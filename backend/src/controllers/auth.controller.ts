@@ -8,7 +8,7 @@ export const signup = async (req: Request, res: Response) => {
     const { username, password, confirmPassword, name, gender } = req.body;
 
     if (!username || !password || !confirmPassword || !name || !gender) {
-      return res.status(400).json({error: 'Please fill in all fields'});
+      return res.status(400).json({ error: 'Please fill in all fields' });
     }
 
     const user = await prisma.user.findUnique({
@@ -18,11 +18,11 @@ export const signup = async (req: Request, res: Response) => {
     });
 
     if (user) {
-      return res.status(400).json({error: 'User already exists'});
+      return res.status(400).json({ error: 'User already exists' });
     }
 
     if (password !== confirmPassword) {
-      return res.status(400).json({error: 'Passwords do not match'});
+      return res.status(400).json({ error: 'Passwords do not match' });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -41,12 +41,12 @@ export const signup = async (req: Request, res: Response) => {
       },
     });
 
-    if(newUser) {
+    if (newUser) {
       generateToken(newUser.id, res);
 
-      res.status(201).json({message: 'User created successfully'});
+      res.status(201).json({ message: 'User created successfully' });
     } else {
-      res.status(400).json({error: 'User could not be created'});
+      res.status(400).json({ error: 'User could not be created' });
     }
   }
   catch (error: any) {
@@ -55,9 +55,45 @@ export const signup = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
-  res.send('Login route');
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Please fill in all fields' });
+    }
+
+    const user = await prisma.user.findUnique({
+      where: {
+        username,
+      },
+    });
+
+    if (!user) {
+      return res.status(400).json({ error: 'User does not exist' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Invalid credentials' });
+    }
+
+    generateToken(user.id, res);
+
+    res.status(200).json({ message: 'User logged in successfully' });
+  }
+
+  catch (error: any) {
+    res.status(500).send(error.message);
+  }
 };
 
 export const logout = async (req: Request, res: Response) => {
-  res.send('Logout route');
+  try {
+    res.clearCookie('jwt');
+    res.status(200).json({ message: 'User logged out successfully' });
+  }
+  catch (error: any) {
+    res.status(500).send(error.message);
+  }
 };
