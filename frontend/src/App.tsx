@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { useAuth } from "./context/AuthContext";
+import Login from "./pages/Login";
 
 function App() {
   const { authUser, setAuthUser, isLoading } = useAuth();
@@ -9,8 +10,8 @@ function App() {
   return (
     <>
       <Routes>
-        {/* <Router path="/login" element={<Login />} />
-        <Router path="/signup" element={<Signup />} /> */}
+        <Route path="/login" element={<Login />} />
+        {/* <Router path="/signup" element={<Signup />} /> */}
         <Route path="/" element={<Home />} />
       </Routes>
     </>
