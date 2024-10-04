@@ -48,6 +48,8 @@ export const signup = async (req: Request, res: Response) => {
     } else {
       res.status(400).json({ error: 'User could not be created' });
     }
+
+    return null as any;
   }
   catch (error: any) {
     res.status(500).send(error.message);
@@ -81,6 +83,8 @@ export const login = async (req: Request, res: Response) => {
     generateToken(user.id, res);
 
     res.status(200).json({ message: 'User logged in successfully' });
+
+    return null as any;
   }
 
   catch (error: any) {
@@ -92,6 +96,27 @@ export const logout = async (req: Request, res: Response) => {
   try {
     res.clearCookie('jwt');
     res.status(200).json({ message: 'User logged out successfully' });
+  }
+  catch (error: any) {
+    res.status(500).send(error.message);
+  }
+};
+
+export const getAuth = async (req: Request, res: Response) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'No user found with this id' });
+    }
+
+    res.status(200).json({ user });
+
+    return null as any;
   }
   catch (error: any) {
     res.status(500).send(error.message);
