@@ -1,4 +1,5 @@
 import useGetConversations from "../hooks/useGetConversations";
+import useGetMessages from "../hooks/useGetMessages";
 import useLogout from "../hooks/useLogout";
 import useConversation from "../zustand/useConversation";
 
@@ -6,6 +7,8 @@ const Home = () => {
   const { handleLogout } = useLogout();
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { conversations } = useGetConversations();
+  const { isLoading, messages } = useGetMessages();
+  console.log(messages);
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="border rounded-xl p-3 flex min-w-96">
@@ -29,6 +32,15 @@ const Home = () => {
         </div>
         <div className="flex flex-col gap-3 w-1/2 p-3">
           <h1 className="text-xl">Chat with {selectedConversation?.name}</h1>
+          <div className="border rounded-xl p-3 h-96 overflow-y-auto">
+            {isLoading && <p>Loading...</p>}
+            {!isLoading &&
+              messages.map((message) => (
+                <div key={message.id}>
+                  <span>{message.content}</span>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>
