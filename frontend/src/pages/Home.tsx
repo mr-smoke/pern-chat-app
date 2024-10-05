@@ -1,14 +1,26 @@
+import { useState } from "react";
 import useGetConversations from "../hooks/useGetConversations";
 import useGetMessages from "../hooks/useGetMessages";
 import useLogout from "../hooks/useLogout";
 import useConversation from "../zustand/useConversation";
+import useSendMessage from "../hooks/useSendMessage";
 
 const Home = () => {
   const { handleLogout } = useLogout();
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { conversations } = useGetConversations();
   const { isLoading, messages } = useGetMessages();
-  console.log(messages);
+  const { sendMessage } = useSendMessage();
+  const [message, setMessage] = useState("");
+
+  const messageHandler = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!message.trim()) {
+      return;
+    }
+    await sendMessage(message);
+    setMessage("");
+  };
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="border rounded-xl p-3 flex min-w-96">
@@ -41,6 +53,14 @@ const Home = () => {
                 </div>
               ))}
           </div>
+          <form onSubmit={messageHandler}>
+            <input
+              type="text"
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+            />
+            <button type="submit">Send</button>
+          </form>
         </div>
       </div>
     </div>
