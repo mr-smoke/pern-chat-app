@@ -52,6 +52,7 @@ export const signup = async (req: Request, res: Response) => {
     return null as any;
   }
   catch (error: any) {
+    console.log(error.message);
     res.status(500).send(error.message);
   }
 };
@@ -88,6 +89,7 @@ export const login = async (req: Request, res: Response) => {
   }
 
   catch (error: any) {
+    console.log(error.message);
     res.status(500).send(error.message);
   }
 };
@@ -98,6 +100,7 @@ export const logout = async (req: Request, res: Response) => {
     res.status(200).json({ message: 'User logged out successfully' });
   }
   catch (error: any) {
+    console.log(error.message);
     res.status(500).send(error.message);
   }
 };

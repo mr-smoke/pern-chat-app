@@ -7,7 +7,7 @@ const Login = () => {
     password: "",
   });
 
-  const { isLoading, loginHandler } = useLogin();
+  const { loginHandler } = useLogin();
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
