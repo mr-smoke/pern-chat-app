@@ -38,7 +38,7 @@ export const AuthContextProvider = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchAuthUser = async () => {
       try {
         const response = await fetch("/api/auth/getAuth");
         const data = await response.json();
@@ -53,7 +53,7 @@ export const AuthContextProvider = ({
       }
     };
 
-    fetchUser();
+    fetchAuthUser();
   }, []);
 
   return (

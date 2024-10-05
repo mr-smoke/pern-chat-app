@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   const { authUser, setAuthUser, isLoading } = useAuth();
@@ -11,7 +12,7 @@ function App() {
     <>
       <Routes>
         <Route path="/login" element={<Login />} />
-        {/* <Router path="/signup" element={<Signup />} /> */}
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </>
