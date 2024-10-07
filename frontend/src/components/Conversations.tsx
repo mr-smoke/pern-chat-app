@@ -9,15 +9,15 @@ const Conversations = () => {
   const { searchConversations, setSearchConversations } = useConversation();
 
   return (
-    <div className="flex-1 p-4 overflow-auto flex flex-col gap-3">
+    <div className="flex-1 p-4 overflow-auto flex md:flex-col gap-3 min-h-24">
       {isLoading && <Loading />}
       {!conversations.length && !isLoading && (
         <p className="text-center text-xl">No conversations found</p>
       )}
       {searchConversations && (
         <>
-          <div className="flex flex-col gap-3">
-            <p className="text-xl">
+          <div className="flex flex-col gap-3 justify-center">
+            <p className="text-center text-xl hidden md:block">
               Search results for "{searchConversations}"
             </p>
             <p

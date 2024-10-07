@@ -12,23 +12,26 @@ const Home = () => {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <div className="border rounded-xl flex w-full h-full md:w-2/3 md:h-3/4 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 text-white overflow-hidden">
-        <div className="flex flex-col flex-1 w-1/3 border-r-2">
+      <div className="border rounded-xl flex flex-col md:flex-row w-full md:w-4/5 lg:w-3/4 xl:w-2/3 h-3/4 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 text-white overflow-hidden relative">
+        <div className="flex flex-col md:flex-1 w-full md:w-1/3 md:border-r-2">
           <Search />
           <Conversations />
-          <button onClick={handleLogout} className="self-start p-4">
+          <button
+            onClick={handleLogout}
+            className="self-start p-4 md:relative absolute bottom-0 left-0"
+          >
             <FaSignOutAlt size={30} />
           </button>
         </div>
-        <div className="flex flex-col w-2/3">
+        <div className="flex flex-col flex-1 md:flex-none w-full md:w-2/3 max-h-[30rem] md:max-h-none">
           {!selectedConversation ? (
-            <div className="text-5xl flex flex-col items-center justify-center h-full gap-12">
+            <div className="text-5xl flex flex-col items-center justify-center h-full gap-12 p-3">
               <p className="text-center">Select a user and start to chat.</p>
               <FaCommentAlt className="w-20 h-20 animate-bounce" />
             </div>
           ) : (
             <>
-              <h1 className="text-xl font-bold border-b-2 p-3">
+              <h1 className="text-xl font-bold md:border-b-2 border-y-2  p-3">
                 Chat with {selectedConversation?.name}
               </h1>
               <Messages />

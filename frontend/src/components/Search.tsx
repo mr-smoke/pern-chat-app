@@ -19,7 +19,7 @@ const Search = () => {
   return (
     <div className="border-b-2 p-4 flex items-center gap-3">
       <input
-        className="p-3 rounded-lg bg-slate-700 flex-1"
+        className="p-3 rounded-lg bg-slate-700 flex-1 w-full"
         type="text"
         placeholder="Search..."
         onChange={(e) => setSearch(e.target.value)}
