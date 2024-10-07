@@ -1,17 +1,15 @@
 import { useState } from "react";
-import useGetMessages from "../hooks/useGetMessages";
 import useLogout from "../hooks/useLogout";
 import useConversation from "../zustand/useConversation";
 import useSendMessage from "../hooks/useSendMessage";
 import { FaPaperPlane, FaSignOutAlt } from "react-icons/fa";
 import Conversations from "../components/Conversations";
-import Loading from "../components/Loading";
 import Search from "../components/Search";
+import Messages from "../components/Messages";
 
 const Home = () => {
   const { handleLogout } = useLogout();
   const { selectedConversation } = useConversation();
-  const { isLoading, messages } = useGetMessages();
   const { sendMessage } = useSendMessage();
   const [message, setMessage] = useState("");
 
@@ -37,17 +35,7 @@ const Home = () => {
           <h1 className="text-xl font-bold border-b-2 p-3">
             Chat with {selectedConversation?.name}
           </h1>
-          <div className="rounded-xl p-3 h-96 overflow-y-auto  flex-1">
-            {isLoading && <Loading />}
-            {!isLoading &&
-              messages.map((message) => (
-                <div className="p-1" key={message.id}>
-                  <p className="p-3 rounded-xl bg-slate-700 w-max">
-                    {message.content}
-                  </p>
-                </div>
-              ))}
-          </div>
+          <Messages />
           <form className="p-4 flex gap-3" onSubmit={messageHandler}>
             <input
               className="flex-1 p-3 rounded-lg bg-slate-700"
