@@ -23,7 +23,7 @@ const useLogin = () => {
       }
 
       setAuthUser(data);
-      toast.success(data.message);
+      toast.success("Logged in successfully");
     } catch (error: any) {
       console.error(error);
       toast.error(error.message);

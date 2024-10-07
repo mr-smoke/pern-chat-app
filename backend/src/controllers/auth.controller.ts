@@ -83,7 +83,7 @@ export const login = async (req: Request, res: Response) => {
 
     generateToken(user.id, res);
 
-    res.status(200).json({ message: 'Logged in successfully' });
+    res.status(200).json(user);
 
     return null as any;
   }
@@ -117,7 +117,7 @@ export const getAuth = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'No user found with this id' });
     }
 
-    res.status(200).json({ user });
+    res.status(200).json(user);
 
     return null as any;
   }

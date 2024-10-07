@@ -1,12 +1,13 @@
 import { FaHandPaper } from "react-icons/fa";
 import useGetMessages from "../hooks/useGetMessages";
 import Loading from "./Loading";
+import Message from "./Message";
 
 const Messages = () => {
   const { isLoading, messages } = useGetMessages();
 
   return (
-    <div className="rounded-xl p-3 h-96 overflow-y-auto flex-1">
+    <div className="rounded-xl p-3 h-96 overflow-y-auto flex-1 flex flex-col gap-3">
       {isLoading && <Loading />}
       {!messages.length && !isLoading && (
         <div className="text-5xl flex flex-col items-center justify-center h-full gap-12">
@@ -16,11 +17,7 @@ const Messages = () => {
       )}
       {!isLoading &&
         messages.map((message) => (
-          <div className="p-1" key={message.id}>
-            <p className="p-3 rounded-xl bg-slate-700 w-max">
-              {message.content}
-            </p>
-          </div>
+          <Message key={message.id} message={message} />
         ))}
     </div>
   );

@@ -1,11 +1,5 @@
 import { create } from "zustand";
 
-interface Message {
-    id: string;
-    content: string;
-    senderId: string;
-}
-
 interface ConversationState {
     selectedConversation: Conversation | null;
     setSelectedConversation: (conversation: Conversation | null) => void;
