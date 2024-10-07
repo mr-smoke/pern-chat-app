@@ -1,6 +1,6 @@
 import useLogout from "../hooks/useLogout";
 import useConversation from "../zustand/useConversation";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaCommentAlt, FaSignOutAlt } from "react-icons/fa";
 import Conversations from "../components/Conversations";
 import Search from "../components/Search";
 import Messages from "../components/Messages";
@@ -21,11 +21,20 @@ const Home = () => {
           </button>
         </div>
         <div className="flex flex-col w-2/3">
-          <h1 className="text-xl font-bold border-b-2 p-3">
-            Chat with {selectedConversation?.name}
-          </h1>
-          <Messages />
-          <MessageInput />
+          {!selectedConversation ? (
+            <div className="text-5xl flex flex-col items-center justify-center h-full gap-12">
+              <p className="text-center">Select a user and start to chat.</p>
+              <FaCommentAlt className="w-20 h-20 animate-bounce" />
+            </div>
+          ) : (
+            <>
+              <h1 className="text-xl font-bold border-b-2 p-3">
+                Chat with {selectedConversation?.name}
+              </h1>
+              <Messages />
+              <MessageInput />
+            </>
+          )}
         </div>
       </div>
     </div>

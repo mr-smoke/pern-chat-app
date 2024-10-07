@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useSignup from "../hooks/useSignup";
 import { FaFemale, FaMale } from "react-icons/fa";
+import Loading from "../components/Loading";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -115,7 +116,7 @@ const Login = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? "Loading..." : "Signup"}
+              {isLoading ? <Loading /> : "Signup"}
             </button>
           </div>
         </form>

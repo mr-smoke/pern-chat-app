@@ -6,7 +6,9 @@ import Signup from "./pages/Signup";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  const { authUser } = useAuth();
+  const { authUser, isLoading } = useAuth();
+
+  if (isLoading) return null;
 
   return (
     <>

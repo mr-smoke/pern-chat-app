@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
 interface ConversationState {
+    searchConversations: string | null;
+    setSearchConversations: (search: string | null) => void;
     selectedConversation: Conversation | null;
     setSelectedConversation: (conversation: Conversation | null) => void;
     messages: Message[];
@@ -8,6 +10,8 @@ interface ConversationState {
 }
 
 const useConversation = create<ConversationState>((set) => ({
+    searchConversations: null,
+    setSearchConversations: (search) => set({ searchConversations: search }),
     selectedConversation: null,
     setSelectedConversation: (conversation) => set({ selectedConversation: conversation }),
     messages: [],
@@ -15,13 +19,3 @@ const useConversation = create<ConversationState>((set) => ({
 }));
 
 export default useConversation;
-
-// addConversation: (conversation) => set((state) => ({ conversations: [...state.conversations, conversation] })),
-// addMessageToConversation: (conversationId, message) => set((state) => ({
-//     conversations: state.conversations.map((conversation) => {
-//         if (conversation.id === conversationId) {
-//             return { ...conversation, messages: [...conversation.messages, message] };
-//         }
-//         return conversation;
-//     }),
-// })),

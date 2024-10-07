@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useLogin from "../hooks/useLogin";
+import Loading from "../components/Loading";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -7,7 +8,7 @@ const Login = () => {
     password: "",
   });
 
-  const { loginHandler } = useLogin();
+  const { isLoading, loginHandler } = useLogin();
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,8 +50,9 @@ const Login = () => {
             <button
               className="border rounded-xl py-3 px-5 w-max hover:opacity-70"
               type="submit"
+              disabled={isLoading}
             >
-              Login
+              {isLoading ? <Loading /> : "Login"}
             </button>
           </div>
         </form>
