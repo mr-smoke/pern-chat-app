@@ -34,7 +34,7 @@ const Login = () => {
           <div className="flex flex-col gap-1">
             <label htmlFor="name">Name</label>
             <input
-              className="border rounded-lg p-3"
+              className="border rounded-lg p-3 text-black"
               type="text"
               id="name"
               onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -43,7 +43,7 @@ const Login = () => {
           <div className="flex flex-col gap-1">
             <label htmlFor="username">Username</label>
             <input
-              className="border rounded-lg p-3"
+              className="border rounded-lg p-3 text-black"
               type="text"
               id="username"
               onChange={(e) => setForm({ ...form, username: e.target.value })}
@@ -52,7 +52,7 @@ const Login = () => {
           <div className="flex flex-col gap-1">
             <label htmlFor="password">Password</label>
             <input
-              className="border rounded-lg p-3"
+              className="border rounded-lg p-3 text-black"
               type="password"
               id="password"
               onChange={(e) => setForm({ ...form, password: e.target.value })}
@@ -61,7 +61,7 @@ const Login = () => {
           <div className="flex flex-col gap-1">
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input
-              className="border rounded-lg p-3"
+              className="border rounded-lg p-3 text-black"
               type="password"
               id="confirmPassword"
               onChange={(e) =>

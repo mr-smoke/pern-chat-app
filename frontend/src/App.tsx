@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
@@ -11,9 +11,18 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={authUser ? <Navigate to={"/"} /> : <Login />}
+        />
+        <Route
+          path="/signup"
+          element={authUser ? <Navigate to={"/"} /> : <Signup />}
+        />
+        <Route
+          path="/"
+          element={authUser ? <Home /> : <Navigate to={"/login"} />}
+        />
       </Routes>
       <Toaster />
     </>

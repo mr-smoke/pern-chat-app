@@ -28,8 +28,8 @@ export const signup = async (req: Request, res: Response) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const profilePicMan = "https://avatar.iran.liara.run/public/boy";
-    const profilePicWoman = "https://avatar.iran.liara.run/public/girl";
+    const profilePicMan = "https://avatar.iran.liara.run/public/boy?username=" + username;
+    const profilePicWoman = "https://avatar.iran.liara.run/public/girl?username=" + username;
 
     const newUser = await prisma.user.create({
       data: {
@@ -83,7 +83,7 @@ export const login = async (req: Request, res: Response) => {
 
     generateToken(user.id, res);
 
-    res.status(200).json({ message: 'User logged in successfully' });
+    res.status(200).json({ message: 'Logged in successfully' });
 
     return null as any;
   }
@@ -97,7 +97,7 @@ export const login = async (req: Request, res: Response) => {
 export const logout = async (req: Request, res: Response) => {
   try {
     res.clearCookie('jwt');
-    res.status(200).json({ message: 'User logged out successfully' });
+    res.status(200).json({ message: 'Logged out successfully' });
   }
   catch (error: any) {
     console.log(error.message);

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 
 interface Conversation {
     id: string;
@@ -27,7 +26,6 @@ const useGetConversations = () => {
                 setConversations(data);
             } catch (error: any) {
                 console.error(error);
-                toast.error(error.message);
             } finally {
                 setIsLoading(false);
             }

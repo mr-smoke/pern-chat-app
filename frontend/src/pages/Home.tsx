@@ -1,15 +1,15 @@
 import { useState } from "react";
-import useGetConversations from "../hooks/useGetConversations";
 import useGetMessages from "../hooks/useGetMessages";
 import useLogout from "../hooks/useLogout";
 import useConversation from "../zustand/useConversation";
 import useSendMessage from "../hooks/useSendMessage";
 import { FaPaperPlane, FaSearch, FaSignOutAlt } from "react-icons/fa";
+import Conversations from "../components/Conversations";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const { handleLogout } = useLogout();
-  const { selectedConversation, setSelectedConversation } = useConversation();
-  const { conversations } = useGetConversations();
+  const { selectedConversation } = useConversation();
   const { isLoading, messages } = useGetMessages();
   const { sendMessage } = useSendMessage();
   const [message, setMessage] = useState("");
@@ -36,22 +36,7 @@ const Home = () => {
               <FaSearch className="w-5 h-5" />
             </button>
           </div>
-          <div className="flex-1 p-4 overflow-auto flex flex-col gap-3">
-            {conversations.map((conversation) => (
-              <div
-                className="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-slate-700 hover:opacity-70"
-                key={conversation.id}
-                onClick={() => setSelectedConversation(conversation)}
-              >
-                <img
-                  src={conversation.profilePic}
-                  alt={conversation.name}
-                  className="w-10 h-10 rounded-full"
-                />
-                <span className="font-semibold">{conversation.name}</span>
-              </div>
-            ))}
-          </div>
+          <Conversations />
           <button onClick={handleLogout} className="self-start p-4">
             <FaSignOutAlt size={30} />
           </button>
@@ -61,7 +46,7 @@ const Home = () => {
             Chat with {selectedConversation?.name}
           </h1>
           <div className="rounded-xl p-3 h-96 overflow-y-auto  flex-1">
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <Loading />}
             {!isLoading &&
               messages.map((message) => (
                 <div className="p-1" key={message.id}>
