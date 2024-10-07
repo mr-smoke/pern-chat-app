@@ -1,11 +1,5 @@
 import { create } from "zustand";
 
-interface Conversation {
-    id: string;
-    name: string;
-    profilePic: string;
-}
-
 interface Message {
     id: string;
     content: string;
