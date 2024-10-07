@@ -14,6 +14,7 @@ const MessageInput = () => {
     await sendMessage(message);
     setMessage("");
   };
+
   return (
     <form className="p-4 flex gap-3" onSubmit={messageHandler}>
       <input

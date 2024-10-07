@@ -16,7 +16,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <main className="flex items-center justify-center h-screen">
       <div className="border rounded-xl flex flex-col gap-3 py-16 p-8 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 text-white xl:w-1/4">
         <h1 className="text-3xl text-center">
           Login <span className="text-slate-700 font-bold">ChatMania</span>
@@ -57,7 +57,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 

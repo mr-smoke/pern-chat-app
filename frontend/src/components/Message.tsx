@@ -21,7 +21,11 @@ const Message = ({ message }: { message: Message }) => {
     <div className={`flex ${isOwner ? "justify-end" : ""}`}>
       <div className={`flex flex-col gap-1 ${isOwner ? "items-end" : ""}`}>
         <div className="flex items-center gap-2">
-          <img className="w-8 h-8" src={profilePic} alt="Message img" />
+          <img
+            className={`w-8 h-8 ${isOwner ? "order-1" : ""}`}
+            src={profilePic}
+            alt="Message img"
+          />
           <p className="p-3 rounded-xl bg-slate-700 w-max">{message.content}</p>
         </div>
         <p className="text-xs text-right">{timeExtract(message.createdAt)}</p>

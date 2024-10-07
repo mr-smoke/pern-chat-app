@@ -33,12 +33,7 @@ const Conversations = () => {
               conversation.name.toLowerCase().includes(searchConversations)
             )
             .map((conversation) => (
-              <>
-                <Conversation
-                  key={conversation.id}
-                  conversation={conversation}
-                />
-              </>
+              <Conversation key={conversation.id} conversation={conversation} />
             ))}
         </>
       )}

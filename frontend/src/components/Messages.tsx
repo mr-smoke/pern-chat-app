@@ -23,14 +23,14 @@ const Messages = () => {
           : true;
 
         return (
-          <>
+          <div key={message.id}>
             {isNewDay && (
               <div className="text-center text-xs text-gray-500 my-2">
                 {new Date(message.createdAt).toLocaleDateString()}
               </div>
             )}
             <Message message={message} />
-          </>
+          </div>
         );
       })}
     </div>

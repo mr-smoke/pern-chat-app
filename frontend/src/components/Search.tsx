@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 const Search = () => {
   const [search, setSearch] = useState("");
   const { setSearchConversations } = useConversation();
+
   const searchHandler = () => {
     if (!search || search.length <= 3) {
       toast.error("Search must be more than 3 characters");
