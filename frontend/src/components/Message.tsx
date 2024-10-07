@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
 import { timeExtract } from "../utils/timeExtract";
 import useConversation from "../zustand/useConversation";
@@ -10,7 +11,11 @@ const Message = ({ message }: { message: Message }) => {
     ? authUser?.profilePic
     : selectedConversation?.profilePic;
 
-  console.log("Message", profilePic);
+  const messageEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
 
   return (
     <div className={`flex ${isOwner ? "justify-end" : ""}`}>
@@ -20,6 +25,7 @@ const Message = ({ message }: { message: Message }) => {
           <p className="p-3 rounded-xl bg-slate-700 w-max">{message.content}</p>
         </div>
         <p className="text-xs text-right">{timeExtract(message.createdAt)}</p>
+        <div ref={messageEndRef} />
       </div>
     </div>
   );

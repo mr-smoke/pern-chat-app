@@ -15,10 +15,24 @@ const Messages = () => {
           <FaHandPaper className="w-20 h-20 animate-bounce" />
         </div>
       )}
-      {!isLoading &&
-        messages.map((message) => (
-          <Message key={message.id} message={message} />
-        ))}
+      {messages.map((message, index) => {
+        const prevMessage = index > 0 ? messages[index - 1] : null;
+        const isNewDay = prevMessage
+          ? new Date(message.createdAt).toDateString() !==
+            new Date(prevMessage.createdAt).toDateString()
+          : true;
+
+        return (
+          <>
+            {isNewDay && (
+              <div className="text-center text-xs text-gray-500 my-2">
+                {new Date(message.createdAt).toLocaleDateString()}
+              </div>
+            )}
+            <Message message={message} />
+          </>
+        );
+      })}
     </div>
   );
 };
