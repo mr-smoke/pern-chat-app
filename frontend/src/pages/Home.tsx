@@ -3,9 +3,10 @@ import useGetMessages from "../hooks/useGetMessages";
 import useLogout from "../hooks/useLogout";
 import useConversation from "../zustand/useConversation";
 import useSendMessage from "../hooks/useSendMessage";
-import { FaPaperPlane, FaSearch, FaSignOutAlt } from "react-icons/fa";
+import { FaPaperPlane, FaSignOutAlt } from "react-icons/fa";
 import Conversations from "../components/Conversations";
 import Loading from "../components/Loading";
+import Search from "../components/Search";
 
 const Home = () => {
   const { handleLogout } = useLogout();
@@ -26,16 +27,7 @@ const Home = () => {
     <div className="h-screen flex justify-center items-center">
       <div className="border rounded-xl flex w-full h-full md:w-2/3 md:h-3/4 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 text-white overflow-hidden">
         <div className="flex flex-col flex-1 w-1/3 border-r-2">
-          <div className="border-b-2 p-4 flex items-center gap-3">
-            <input
-              className="p-3 rounded-lg bg-slate-700 flex-1"
-              type="text"
-              placeholder="Search..."
-            />
-            <button className="rounded-full bg-slate-700 p-3">
-              <FaSearch className="w-5 h-5" />
-            </button>
-          </div>
+          <Search />
           <Conversations />
           <button onClick={handleLogout} className="self-start p-4">
             <FaSignOutAlt size={30} />
