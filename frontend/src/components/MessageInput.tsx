@@ -3,7 +3,7 @@ import useSendMessage from "../hooks/useSendMessage";
 import { useState } from "react";
 
 const MessageInput = () => {
-  const { sendMessage } = useSendMessage();
+  const { sendMessage, isSending } = useSendMessage();
   const [message, setMessage] = useState("");
 
   const messageHandler = async (e: React.FormEvent) => {
@@ -24,8 +24,16 @@ const MessageInput = () => {
         value={message}
         placeholder="Type a message"
       />
-      <button className="rounded-full bg-slate-700 p-3" type="submit">
-        <FaPaperPlane className="w-5 h-5" />
+      <button
+        className="rounded-full bg-slate-700 p-3"
+        type="submit"
+        disabled={isSending}
+      >
+        {isSending ? (
+          <div className="w-5 h-5 border-t-2 border-b-2 border-slate-200 animate-spin" />
+        ) : (
+          <FaPaperPlane className="w-5 h-5" />
+        )}
       </button>
     </form>
   );
