@@ -10,6 +10,7 @@ const Message = ({ message }: { message: Message }) => {
   const profilePic = isOwner
     ? authUser?.profilePic
     : selectedConversation?.profilePic;
+  const shake = message.shake ? "shake" : "";
 
   const messageEndRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +27,9 @@ const Message = ({ message }: { message: Message }) => {
             src={profilePic}
             alt="Message img"
           />
-          <p className="p-3 rounded-xl bg-slate-700 w-max">{message.content}</p>
+          <p className={`p-3 rounded-xl bg-slate-700 w-max ${shake}`}>
+            {message.content}
+          </p>
         </div>
         <p className="text-xs text-right">{timeExtract(message.createdAt)}</p>
         <div ref={messageEndRef} />

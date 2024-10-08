@@ -9,4 +9,5 @@ interface Message {
     content: string;
     senderId: string;
     createdAt: string;
+    shake?: boolean;
 }
