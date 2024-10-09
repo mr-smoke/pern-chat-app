@@ -67,6 +67,7 @@ export const getMessages = async (req: Request, res: Response) => {
     try {
         const { id: receiverId } = req.params;
         const { id: senderId } = req.user;
+        const { limit = 10, offset = 0 } = req.query;
 
         let conversation = await prisma.conversation.findFirst({
             where: {
@@ -77,8 +78,10 @@ export const getMessages = async (req: Request, res: Response) => {
             include: {
                 messages: {
                     orderBy: {
-                        createdAt: 'asc',
+                        createdAt: 'desc',
                     },
+                    take: Number(limit),
+                    skip: Number(offset),
                 },
             },
         });

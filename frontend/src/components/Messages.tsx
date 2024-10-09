@@ -5,11 +5,21 @@ import Message from "./Message";
 import useListenMessages from "../hooks/useListenMessages";
 
 const Messages = () => {
-  const { isLoading, messages } = useGetMessages();
+  const { isLoading, messages, getMoreMessages } = useGetMessages();
   useListenMessages();
 
+  const handleScroll = (event: any) => {
+    const { scrollTop } = event.currentTarget;
+    if (scrollTop === 0 && !isLoading) {
+      getMoreMessages(messages.length);
+    }
+  };
+
   return (
-    <div className="rounded-xl p-3 overflow-y-auto flex-1 flex flex-col gap-1">
+    <div
+      className="rounded-xl p-3 overflow-y-auto flex-1 flex flex-col gap-1"
+      onScroll={handleScroll}
+    >
       {isLoading && <Loading />}
       {!messages.length && !isLoading && (
         <div className="text-5xl flex flex-col items-center justify-center h-full gap-12">

@@ -28,6 +28,7 @@ const Login = () => {
               className="border rounded-lg p-3 text-black"
               type="text"
               id="username"
+              maxLength={20}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
           </div>

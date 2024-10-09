@@ -12,7 +12,7 @@ const Conversations = () => {
     <div className="flex-1 p-4 overflow-auto flex md:flex-col gap-3 min-h-24">
       {isLoading && <Loading />}
       {!conversations.length && !isLoading && (
-        <p className="text-center text-xl">No conversations found</p>
+        <p className="text-center text-2xl">No conversation found</p>
       )}
       {searchConversations && (
         <>

@@ -31,7 +31,7 @@ const Home = () => {
             </div>
           ) : (
             <>
-              <h1 className="text-xl font-bold border-y-2  p-3">
+              <h1 className="text-xl font-bold border-y-2 p-3 truncate">
                 Chat with {selectedConversation?.name}
               </h1>
               <Messages />

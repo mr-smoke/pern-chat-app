@@ -16,7 +16,7 @@ const Message = ({ message }: { message: Message }) => {
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [message]);
+  }, []);
 
   return (
     <div className={`flex ${isOwner ? "justify-end" : ""}`}>
