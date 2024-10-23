@@ -14,6 +14,8 @@ const Login = () => {
 
   const { isLoading, signupHandler } = useSignup();
 
+  console.log(form);
+
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     signupHandler(
@@ -80,7 +82,12 @@ const Login = () => {
                 id="male"
                 value="male"
                 name="gender"
-                onClick={(e) => setForm({ ...form, gender: e.target.value })}
+                onClick={(e) =>
+                  setForm({
+                    ...form,
+                    gender: (e.target as HTMLInputElement).value,
+                  })
+                }
               />
               <label
                 htmlFor="male"
@@ -96,7 +103,12 @@ const Login = () => {
                 id="female"
                 value="female"
                 name="gender"
-                onClick={(e) => setForm({ ...form, gender: e.target.value })}
+                onClick={(e) =>
+                  setForm({
+                    ...form,
+                    gender: (e.target as HTMLInputElement).value,
+                  })
+                }
               />
               <label
                 htmlFor="female"
