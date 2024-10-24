@@ -18,7 +18,17 @@
 
 Chat App is a full-stack chat application built with React, Node.js, Express.js, Prisma, PostgreSQL, Zustand, Socket.io, and Tailwind CSS. This project provides a platform for users to engage in real-time conversations. It includes user authentication and authorization, allowing users to manage their own conversations while ensuring data privacy. The application leverages the power of React for building a dynamic and responsive user interface, Prisma for a flexible and scalable database solution, PostgreSQL for reliable and robust data storage, Express.js for handling server-side logic and API endpoints, Zustand for state management, Socket.io for real-time communication, and Tailwind CSS for styling and responsive design.
 
-<a href="https://i.ibb.co/gdyNSsB/chat-app.gif" target="_blank"><img src="https://i.ibb.co/gdyNSsB/chat-app.gif" alt="blog-app" border="0" /></a>
+### Larger Devices
+
+- Click to play the gif.
+
+<a href="https://i.ibb.co/gdyNSsB/chat-app.gif" target="_blank"><img src="https://i.ibb.co/kJKj4YW/chat-app.gif" alt="blog-app" border="0" /></a>
+
+### Smaller Devices
+
+- Click to play the gif.
+
+<a href="https://i.ibb.co/GMBGfZQ/mobile-chat-app.gif" target="_blank"><img src="https://i.ibb.co/gWHQb0Z/mobile-chat-app.gif" alt="blog-app" border="0" /></a>
 
 ### Key Use Cases:
 
